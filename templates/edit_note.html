@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}{{ block.super }}Edit note{% endblock %}
+
+{% block content %}
+    <div class="card" id="edit_note">
+    <div class="card-body">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-outline-success" value="Save" >
+    </form>
+    </div>
+    </div>
+{% endblock %}

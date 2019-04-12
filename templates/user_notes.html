@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %} {{ block.super }} Notes {% endblock %}
+
+{% block content %}
+    <div class="btn-group">
+        <a class="btn btn-outline-primary" href="?order_by=title_lower&direction=asc">Title ascending</a>
+        <a class="btn btn-outline-primary" href="?order_by=title_lower&direction=desc">Title descending</a>
+        <a class="btn btn-outline-primary" href="?order_by=date&direction=asc">Date ascending</a>
+        <a class="btn btn-outline-primary" href="?order_by=date&direction=desc">Date descending</a>
+        <a class="btn btn-outline-primary" href="?order_by=category&direction=asc">Category ascending</a>
+        <a class="btn btn-outline-primary" href="?order_by=category&direction=desc">Category descending</a>
+        <a class="btn btn-outline-primary" href="?order_by=favorite&direction=asc">Favorite ascending</a>
+        <a class="btn btn-outline-primary" href="?order_by=favorite&direction=desc">Favorite descending</a>
+    </div>
+    {% if filter %}
+        <div id="filter">
+        <form method="get" autocomplete="off">
+            <ul id="navbar">
+              <li>Title: {{ filter.form.title }}</li>
+              <li>Date: {{ filter.form.date }}</li>
+              <li>Category: {{ filter.form.category }}</li>
+              <li>Favorite: {{ filter.form.favorite }}</li>
+              <li><button id="submit" type="submit" class="btn btn-outline-info">Use Filter</button></li>
+              <li><p></p></li>
+              <li><a href="{% url 'note_new' %}" class="btn btn-outline-success">New note </a></li>
+            </ul>
+        </form>
+        <table class="table">
+        {% for note in filter.qs %}
+            {% cycle 'row' '' as row silent%}
+            {% if row %}<tr class="trt">{% endif %}
+            <td>
+            <div class="card">
+                <div class="card-body">
+                    <div class="favor">
+                        <h4 class="card-title">{{ note.title }}</h4>
+                        {% if note.favorite == True %}
+                            <i class="fas fa-heart"></i>
+                        {% endif %}
+                    </div>
+                    <a href="{% url 'detail' note.note_id %}" class="btn btn-outline-primary">Details &rarr;</a>
+                </div>
+            </div>
+            </td>
+        {% if not row %}</tr>{% endif %}
+        {% endfor %}
+        </table>
+    {% else %}
+        <h2 class="alert-danger">No notes available</h2>
+        <h2 class="alert-info">If you want to create new note click button below</h2>
+        <a href="{% url 'note_new' %}" class="btn btn-outline-success">New note</a>
+    {% endif %}
+    </div>
+{% endblock %}

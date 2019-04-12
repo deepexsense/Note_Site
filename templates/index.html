@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ block.super }} Home {% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'my_notes' %}" class="btn btn-outline-primary">My notes</a>
+        <a href="{% url 'note_new' %}" class="btn btn-outline-success">New note </a>
+        {% else %}
+        <h3 class="alert-info">Please sign in to view your notes</h3>
+    {% endif %}
+<style>
+    h2.alert-info{
+        width: max-content;
+    }
+    h3.alert-info{
+        width: max-content;
+    }
+</style>
+{% endblock %}
