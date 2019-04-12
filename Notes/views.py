@@ -1,19 +1,12 @@
 from django.contrib.auth import login, logout
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models.functions import Lower
-from django.http import HttpResponse, Http404, HttpResponseRedirect, HttpResponseForbidden
-from django.shortcuts import render, get_object_or_404
-from django.template import loader, RequestContext
-from django.urls import reverse
+from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, FormView, DetailView, UpdateView, DeleteView
 from django.views.generic.base import View
-from django.views.generic.detail import SingleObjectMixin
-
 from Notes.filters import NoteFilter
 from Notes.forms import NoteForm
-from .models import Note, User
+from .models import Note
 
 
 class NoteDetailView(DetailView):
@@ -40,34 +33,6 @@ class NotesView(LoginRequiredMixin, ListView):
                                        extra(select={'title_lower': 'lower(title)'}).
                                        order_by(order_by))
         return context
-
-class NotesSortingView(LoginRequiredMixin, ListView):
-    template_name = "sort.html"
-    model = Note
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(NotesSortingView, self).get_context_data(**kwargs)
-        order_by = self.request.GET.get('order_by',default='title_lower')
-        direction = self.request.GET.get('direction')
-        context['order_by'] = order_by
-        context['direction'] = direction
-        if direction == 'desc':
-            order_by = '-{}'.format(order_by)
-        context['filter'] = NoteFilter(self.request.GET, queryset=Note.objects.filter(user=self.request.user).
-                                       extra(select={'title_lower': 'lower(title)'}).
-                                       order_by(order_by))
-        return context
-    #
-    # def note_order(self):
-    #     order_by = self.request.GET.get('order_by')
-    #     direction = self.request.GET.get('direction')
-    #     if direction == 'desc':
-    #         order_by = '-{}'.format(order_by)
-    #     filter = NoteFilter(self.request.GET, queryset=Note.objects.filter(user=self.request.user).
-    #                         extra(select={'title_lower': 'lower(title)'}).order_by(order_by))
-    #
-    #     return render(self.request, NotesSortingView.template_name,
-    #                   {'filter': filter, 'order_by': order_by, 'direction': direction})
 
 
 class RegisterFormView(FormView):

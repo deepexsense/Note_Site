@@ -14,8 +14,5 @@ urlpatterns = [
     url(r'^my_notes/edit/(?P<note_id>[0-9a-f-]+)/$', views.NoteEditingView.as_view(), name='note_edit'),
     url(r'^my_notes/delete/(?P<note_id>[0-9a-f-]+)/$', views.NoteDeletingView.as_view(), name='note_delete'),
     url(r'^my_notes/delete_success/$', views.DeleteSuccessView.as_view(), name='note_delete_success'),
-    # url(r'^my_notes/sort/(?P<order_value>[a-z-])$', views.NotesSortingView.as_view(), name='note_sort'),
-    url(r'^my_notes/sort/$', views.NotesSortingView.as_view(), name='note_sort'),
-    # url(r'^my_notes/sort/$', views.note_order, name='note_sort'),
 ]
 
