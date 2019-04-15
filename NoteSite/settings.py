@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'isotope',
     'Notes',
     'sorting_bootstrap',
     'django.contrib.admin',
