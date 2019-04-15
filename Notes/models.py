@@ -12,7 +12,7 @@ class Category(models.Model):
 
 
 class Note(models.Model):
-    note_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    note_id = models.UUIDField(default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=50)
     text = models.TextField()
     date = models.DateTimeField()
