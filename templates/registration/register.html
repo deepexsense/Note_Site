@@ -1,12 +1,31 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block title %} {{ block.super }} Registration {% endblock %}
+
 
 {% block content %}
 <body>
-    <form action="" method="post">
+    <form id="register_form" action="/create_user/" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-outline-success">Register</button>
+        <button type="submit" class="btn btn-outline-success">Register</button>
     </form>
 </body>
+    {#$(document).on('submit','#register_form', function (e) {#}
+    {#    e.preventDefault();#}
+    {##}
+    {#    $.ajax({#}
+    {#        type:'POST',#}
+    {#        url:'/register/',#}
+    {#        data: {#}
+    {#            username: $('#id_username').val(),#}
+    {#            password1: $('#id_password1').val(),#}
+    {#            password2: $('#id_password2').val(),#}
+    {#            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()#}
+    {#        },#}
+    {#        success:function () {#}
+    {#            alert("Created new user!")#}
+    {#        }#}
+    {#    })#}
+    {#)#}
 {% endblock %}

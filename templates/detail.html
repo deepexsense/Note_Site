@@ -20,8 +20,8 @@
 </div>
     {% if user.is_authenticated %}
         <div class="buttons">
-        <a href="{% url 'note_edit' note_id=note.note_id %}" class="btn btn-outline-info">Edit</a>
-        <a href="{% url 'note_delete' note_id=note.note_id%}" class="btn btn-outline-danger">Delete</a>
+        <a href="{% url 'note_edit' id=note.id %}" class="btn btn-outline-info">Edit</a>
+        <a href="{% url 'note_delete' id=note.id%}" class="btn btn-outline-danger">Delete</a>
         <a href="{% url 'my_notes' %}" class="btn btn-outline-success" id="all_notes">All notes</a>
         </div>
     {% endif %}

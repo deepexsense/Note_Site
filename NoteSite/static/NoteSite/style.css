@@ -5,7 +5,6 @@ body {
 
 body {
   background-image: url(img/background.png);
-  margin: 50px;
   background-size: 100%;
 }
 
@@ -38,6 +37,9 @@ a {
 }
 #filter {
     display: flex;
+}
+.table td, .table th {
+    border-top: none;
 }
 .card-body{
     width: 300px;
@@ -74,9 +76,6 @@ a {
     margin-left: 100px;
     width: 100%;
 }
-td{
-    width: 20%;
-}
 #all_notes{
     margin-left: 100px;
 }
@@ -91,4 +90,7 @@ td{
 }
 #option3{
     display: none;
+}
+#id_date:placeholder-shown{
+
 }

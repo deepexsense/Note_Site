@@ -6,7 +6,7 @@
     {% csrf_token %}
     <h3 class="alert-danger">Are you sure you want to delete "{{ note }}"?</h3>
     <input type="submit" class="btn btn-outline-danger" value="Confirm">
-    <a href="{% url 'detail' note.note_id %}" class="btn btn-outline-info">Cancel</a>
+    <a href="{% url 'detail' note.id %}" class="btn btn-outline-info">Cancel</a>
 </form>
     <style>
     h3.alert-danger{
