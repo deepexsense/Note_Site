@@ -1,27 +1,22 @@
-{% extends 'base.html' %}
 {% load staticfiles %}
-
-{% block title %} {{ block.super }} New note {% endblock %}
-
-{% block content %}
-    <div class="card" id="new_note">
+<div class="card" id="new_note">
     <div class="card-body">
-    <h1>New note</h1>
-    <link rel="stylesheet" type="text/css" href="{% static "datetimepicker/jquery.datetimepicker.css" %}"/>
-    <script src="{% static "datetimepicker/jquery.js"%}"></script>
-    <script src="{% static "datetimepicker/build/jquery.datetimepicker.full.min.js"%}"></script>
-    <script>
-    $(function () {
-            $("#id_date").datetimepicker({
-                format:"Y-m-d H:i",
+        <h1>New note</h1>
+        <link rel="stylesheet" type="text/css" href="{% static "datetimepicker/jquery.datetimepicker.css" %}"/>
+        <script src="{% static "datetimepicker/jquery.js"%}"></script>
+        <script src="{% static "datetimepicker/build/jquery.datetimepicker.full.min.js"%}"></script>
+        <script>
+        $(function () {
+                $("#id_date").datetimepicker({
+                    format:"Y-m-d H:i",
+                });
             });
-        });
-    </script>
-    <form method="POST" class="note-form" autocomplete="off">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-outline-success">Save</button>
-    </form>
+        </script>
+        <form id="id_new_note_form" method="POST" class="note-form" autocomplete="off">
+            {% csrf_token %}
+                {{ form.as_p}}
+            <button type="submit" class="btn btn-outline-success">Save</button>
+            <button id="id_filter" class="btn btn-outline-primary">All notes</button>
+        </form>
     </div>
-    </div>
-{% endblock %}
+</div>

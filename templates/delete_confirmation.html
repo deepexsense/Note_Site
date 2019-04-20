@@ -1,16 +1,44 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
 
-{% block title %}{{ block.super }}Delete Confirmation{% endblock %}
-{% block  content %}
+    <meta charset="UTF-8">
+    <title>{% block title %}My Notes{% endblock %}</title>
+
+</head>
+<body>
+
+<div class="sidebar_nav">
+<nav>
+    <a href="/" class="btn btn-outline-primary">Home</a>
+    {% if user.is_authenticated %}
+        <a id="id_sign_out" href="{% url "logout"%}" class="btn btn-outline-danger">Sign out</a>
+        {{ user.get_username }}
+        {% else %}
+        <button id="id_sign_up" class="btn btn-outline-success">Sign up</button>
+        <button id="id_sign_in" class="btn btn-outline-success">Sign in</button>
+        {% endif %}
+</nav>
+</div>
 <form method="post">
     {% csrf_token %}
     <h3 class="alert-danger">Are you sure you want to delete "{{ note }}"?</h3>
     <input type="submit" class="btn btn-outline-danger" value="Confirm">
-    <a href="{% url 'detail' note.id %}" class="btn btn-outline-info">Cancel</a>
+    <a href="/" class="btn btn-outline-info">Cancel</a>
 </form>
-    <style>
-    h3.alert-danger{
-        width: max-content;
-    }
-</style>
-{% endblock %}
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href={% static "Shards-2.1.0/css/shards.min.css" %}>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static "NoteSite/style.css" %}"/>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="{% static "Shards-2.1.0/js/shards.min.js" %}"></script>
+</body>
+</html>

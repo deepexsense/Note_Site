@@ -11,7 +11,7 @@ body {
 .sidebar_nav {
   background: rgba(127, 199, 255, 0.5);;
   margin-bottom: 25px;
-  padding-left: 1050px;
+  padding-left: 10px;
 }
 a {
   text-decoration: none;
@@ -52,9 +52,24 @@ a {
     width: 500px;
     margin-bottom: 50px;
 }
-.card#login{
+.card#id_sign_up_card{
+    width: 800px;
+    margin-left: 300px;
+}
+.card-body#id_sign_up_card-body{
+    width: 800px;
+}
+.card#id_login{
     width: 300px;
     height: 300px;
+    margin-left: 500px;
+}
+.card-body#id_login_card-body{
+    width: 300px;
+    height: 300px;
+}
+#id_login-input{
+    margin-left: 75px;
 }
 .card#new_note{
     margin-left: 40px;
@@ -91,6 +106,7 @@ a {
 #option3{
     display: none;
 }
-#id_date:placeholder-shown{
-
+#id_filter_title{
+    margin-bottom: -5px;
+    margin-top: 5px;
 }

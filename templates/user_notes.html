@@ -1,29 +1,28 @@
-{% extends 'base.html' %}
 {% load staticfiles %}
-
-{% block title %} {{ block.super }} Notes {% endblock %}
-
-{% block content %}
-    <div class="btn-group" id="submits">
-        <a class="btn btn-outline-primary" id="title_lower_asc" href="?order_by=title_lower&direction=asc">Title ascending</a>
-        <a class="btn btn-outline-primary" id="title_lower_desc" href="?order_by=title_lower&direction=desc">Title descending</a>
-        <a class="btn btn-outline-primary" id="date_asc" href="?order_by=date&direction=asc">Date ascending</a>
-        <a class="btn btn-outline-primary" id="date_desc" href="?order_by=date&direction=desc">Date descending</a>
-        <a class="btn btn-outline-primary" id="category_asc" href="?order_by=category&direction=asc">Category ascending</a>
-        <a class="btn btn-outline-primary" id="category_desc" href="?order_by=category&direction=desc">Category descending</a>
-        <a class="btn btn-outline-primary" id="favorite_asc" href="?order_by=favorite&direction=asc">Favorite ascending</a>
-        <a class="btn btn-outline-primary" id="favorite_desc" href="?order_by=favorite&direction=desc">Favorite descending</a>
-    </div>
-    {% if filter %}
-        <div id="filter">
+{% if filter %}
+    <div id="filter">
         <form method="get" autocomplete="off">
             <ul id="navbar">
-              <li>Title: {{ filter.form.title }}</li>
-              <li>Date: {{ filter.form.date }}</li>
-              <li>Category: {{ filter.form.category }}</li>
-              <li>Favorite: {{ filter.form.favorite }}</li>
+                <li><h4 class="card-title" id="id_filter_title">Filter</h4></li>
+                <li>Title: {{ filter.form.title }}</li>
+                <li>Date: {{ filter.form.date }}</li>
+                <li>Category: {{ filter.form.category }}</li>
+                <li>Favorite: {{ filter.form.favorite }}</li>
+                <li><h4 class="card-title" id="id_filter_title">Sorter</h4></li>
+                <li>Field:</li>
+                <li><select id="id_order_by">
+                    <option>title</option>
+                    <option>date</option>
+                    <option>category</option>
+                    <option>favorite</option>
+                </select></li>
+                <li>Direction:</li>
+                <li><select id="id_direction">
+                    <option>ascending</option>
+                    <option>descending</option>
+              </select></li>
               <li><p></p></li>
-              <li><a href="{% url 'note_new' %}" class="btn btn-outline-success">New note </a></li>
+              <li><button id="id_new_note" class="btn btn-outline-success">New note</button></li>
             </ul>
         </form>
         <link rel="stylesheet" type="text/css" href="{% static "datetimepicker/jquery.datetimepicker.css" %}"/>
@@ -49,17 +48,16 @@
                             <i class="fas fa-heart"></i>
                         {% endif %}
                     </div>
-                    <a href="{% url 'detail' note.id %}" class="btn btn-outline-primary">Details &rarr;</a>
+                    <button id="id_details" value="{{ note.id }}" class="btn btn-outline-primary">Details &rarr;</button>
                 </div>
             </div>
             </td>
         {% if not row %}</tr>{% endif %}
         {% endfor %}
         </table>
-    {% else %}
-        <h2 class="alert-danger">No notes available</h2>
-        <h2 class="alert-info">If you want to create new note click button below</h2>
-        <a href="{% url 'note_new' %}" class="btn btn-outline-success">New note</a>
-    {% endif %}
+        {% else %}
+            <h2 class="alert-danger">No notes available</h2>
+            <h2 class="alert-info">If you want to create new note click button below</h2>
+            <a href="{% url 'note_new' %}" class="btn btn-outline-success">New note</a>
+        {% endif %}
     </div>
-{% endblock %}

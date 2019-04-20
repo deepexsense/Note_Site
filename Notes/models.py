@@ -17,7 +17,6 @@ class Note(models.Model):
     text = models.TextField()
     date = models.DateTimeField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    # category = models.CharField(max_length=50)
     favorite = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

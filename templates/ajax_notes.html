@@ -6,12 +6,12 @@
             <div class="card">
                 <div class="card-body">
                     <div class="favor">
-                        <h4 class="card-title">{{ note.title }}</h4>
+                        <h4 class="card-title" >{{ note.title }}</h4>
                         {% if note.favorite == True %}
                             <i class="fas fa-heart"></i>
                         {% endif %}
                     </div>
-                    <a href="{% url 'detail' note.id %}" class="btn btn-outline-primary">Details &rarr;</a>
+                    <button id="id_details" value="{{ note.id }}" class="btn btn-outline-primary">Details &rarr;</button>
                 </div>
             </div>
             </td>

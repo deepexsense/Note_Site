@@ -1,7 +1,5 @@
 import django_filters
 from django.forms import TextInput
-from django_filters.widgets import LinkWidget
-
 from Notes.models import Note
 
 

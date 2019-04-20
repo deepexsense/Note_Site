@@ -2055,7 +2055,7 @@ var datetimepickerFactory = function ($) {
 						return true;
 					}
 					if (!options.datepicker && options.timepicker) {
-						current_time_index = timebox.find('.xdsoft_current').length ? timebox.find('.xdsoft_current').eq(0).index() : 0;
+						current_time_index = timebox.find('.xdsoft_current').length ? timebox.find('.xdsoft_current').eq(0).home() : 0;
 						if (current_time_index + event.deltaY >= 0 && current_time_index + event.deltaY < timebox.children().length) {
 							current_time_index += event.deltaY;
 						}

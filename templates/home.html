@@ -1,0 +1,17 @@
+{% load staticfiles %}
+<div>
+    {% if user.is_authenticated %}
+        <button id="id_filter" class="btn btn-outline-primary">My notes</button>
+        <button id="id_new_note" class="btn btn-outline-success">New note</button>
+        {% else %}
+        <h3 class="alert-info">Please sign in to view your notes</h3>
+    {% endif %}
+    <style>
+        h2.alert-info{
+            width: max-content;
+        }
+        h3.alert-info{
+            width: max-content;
+        }
+    </style>
+</div>

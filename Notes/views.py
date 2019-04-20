@@ -2,7 +2,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, FormView, DetailView, UpdateView, DeleteView
 from django.views.generic.base import View
@@ -25,15 +25,7 @@ class NotesView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(NotesView, self).get_context_data(**kwargs)
-        order_by = self.request.GET.get('order_by', default='title_lower')
-        direction = self.request.GET.get('direction')
-        context['order_by'] = order_by
-        context['direction'] = direction
-        if direction == 'desc':
-            order_by = '-{}'.format(order_by)
-        context['filter'] = NoteFilter(self.request.GET, queryset=Note.objects.filter(user=self.request.user).
-                                       extra(select={'title_lower': 'lower(title)'}).
-                                       order_by(order_by))
+        context['filter'] = NoteFilter(self.request.GET, queryset=Note.objects.filter(user=self.request.user))
         return context
 
 
@@ -47,7 +39,7 @@ class AjaxableNotesView(LoginRequiredMixin, ListView):
         direction = self.request.GET.get('direction')
         context['order_by'] = order_by
         context['direction'] = direction
-        if direction == 'desc':
+        if direction == 'descending':
             order_by = '-{}'.format(order_by)
         context['filter'] = NoteFilter(self.request.GET, queryset=Note.objects.filter(user=self.request.user).
                                        extra(select={'title_lower': 'lower(title)'}).
@@ -78,7 +70,6 @@ class LoginFormView(FormView):
 
     def form_valid(self, form):
         self.user = form.get_user()
-
         login(self.request, self.user)
         return super(LoginFormView, self).form_valid(form)
 
@@ -86,7 +77,7 @@ class LoginFormView(FormView):
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return render(request, 'registration/logout.html', {})
+        return render(request, 'base.html', {})
 
 
 class NoteFormView(LoginRequiredMixin, FormView):
@@ -106,7 +97,7 @@ class NoteEditingView(LoginRequiredMixin, UpdateView):
     model = Note
     form_class = NoteForm
     template_name = 'edit_note.html'
-    success_url = '/my_notes'
+    success_url = '/'
 
     def get_object(self, queryset=None):
         note = Note.objects.get(id=self.kwargs["id"])
@@ -116,21 +107,8 @@ class NoteEditingView(LoginRequiredMixin, UpdateView):
 class NoteDeletingView(LoginRequiredMixin, DeleteView):
     model = Note
     template_name = 'delete_confirmation.html'
-    success_url = '/my_notes/delete_success'
+    success_url = '/'
 
     def get_object(self, queryset=None):
-        note = Note.objects.get(note_id=self.kwargs["note_id"])
+        note = Note.objects.get(id=self.kwargs["id"])
         return note
-
-
-class DeleteSuccessView(TemplateView):
-    template_name = 'delete_success.html'
-
-
-def validate_username(request):
-    username = request.GET.get('username', None)
-    data = {
-        'is_taken': User.objects.filter(username__iexact=username).exists()
-    }
-    return JsonResponse(data)
-
