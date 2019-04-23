@@ -2,6 +2,7 @@ import uuid
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -13,6 +14,7 @@ class Category(models.Model):
 
 class Note(models.Model):
     note_id = models.UUIDField(default=uuid.uuid4, editable=False)
+    open_url = models.BooleanField(default=False)
     title = models.CharField(max_length=50)
     text = models.TextField()
     date = models.DateTimeField()
@@ -22,3 +24,6 @@ class Note(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('note_uuid_url', args=[str(self.note_id)])

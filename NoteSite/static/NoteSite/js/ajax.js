@@ -1,14 +1,14 @@
 $(document).ready(function () {
-    $(document).on("submit","#id_register_form", function (e) {
+    $(document).on("submit", "#id_register_form", function (e) {
         e.preventDefault();
 
         $.ajax({
             type: "POST",
             url: "/register/",
             data: {
-                username:$('#id_username').val(),
-                password1:$('#id_password1').val(),
-                password2:$('#id_password2').val(),
+                username: $('#id_username').val(),
+                password1: $('#id_password1').val(),
+                password2: $('#id_password2').val(),
                 csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
             },
             dataType: "html",
@@ -18,25 +18,7 @@ $(document).ready(function () {
         });
     });
 
-    // $(document).on("submit","#id_login_form", function (e) {
-    //     e.preventDefault();
-    //
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "/login/",
-    //         data: {
-    //             username:$('#id_username').val(),
-    //             password:$('#id_password').val(),
-    //             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-    //         },
-    //         dataType: "html",
-    //         success: function () {
-    //             alert("Successful sign in!")
-    //         },
-    //     });
-    // });
-
-    $(document).on("click","#id_sign_up",function (e) {
+    $(document).on("click", "#id_sign_up", function (e) {
         e.preventDefault();
 
         $.ajax({
@@ -48,7 +30,7 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on("click","#id_sign_in",function (e) {
+    $(document).on("click", "#id_sign_in", function (e) {
         e.preventDefault();
 
         $.ajax({
@@ -60,7 +42,7 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on("click","#id_home",function (e) {
+    $(document).on("click", "#id_home", function (e) {
         console.log("A");
         e.preventDefault();
 
@@ -73,7 +55,7 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on("click","#id_filter", function (e) {
+    $(document).on("click", "#id_filter", function (e) {
         e.preventDefault();
 
         $.ajax({
@@ -85,7 +67,7 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on("click","#id_new_note", function (e) {
+    $(document).on("click", "#id_new_note", function (e) {
         e.preventDefault();
 
         $.ajax({
@@ -97,18 +79,18 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on("submit","#id_new_note_form", function (e) {
+    $(document).on("submit", "#id_new_note_form", function (e) {
         e.preventDefault();
 
         $.ajax({
             type: "POST",
             url: "/my_notes/new/",
             data: {
-                title:$('#id_title').val(),
-                text:$('#id_text').val(),
-                date:$('#id_date').val(),
-                category:$('#id_category').val(),
-                favorite:$('#id_favorite')[0].checked,
+                title: $('#id_title').val(),
+                text: $('#id_text').val(),
+                date: $('#id_date').val(),
+                category: $('#id_category').val(),
+                favorite: $('#id_favorite')[0].checked,
                 csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
             },
             dataType: "html",
@@ -118,19 +100,19 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on("click","#id_details",function (e) {
+    $(document).on("click", "#id_details", function (e) {
         e.preventDefault();
         const id = $(this).context.value;
         console.log(id);
         $.ajax({
             type: "GET",
-            url: id,
+            url: "/note/"+id,
             data: {
-                title:$('#id_title').val(),
-                text:$('#id_text').val(),
-                date:$('#id_date').val(),
-                category:$('#id_category').val(),
-                favorite:$('#id_favorite').val(),
+                title: $('#id_title').val(),
+                text: $('#id_text').val(),
+                date: $('#id_date').val(),
+                category: $('#id_category').val(),
+                favorite: $('#id_favorite').val(),
                 csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
             },
             dataType: "html",
@@ -138,19 +120,19 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on("click","#id_note_edit",function (e) {
+    $(document).on("click", "#id_note_edit", function (e) {
         e.preventDefault();
         const id = $(this).context.value;
         console.log(id);
         $.ajax({
             type: "GET",
-            url: "my_notes/edit/"+id,
+            url: "my_notes/edit/" + id,
             data: {
-                title:$('#id_title').val(),
-                text:$('#id_text').val(),
-                date:$('#id_date').val(),
-                category:$('#id_category').val(),
-                favorite:$('#id_favorite').val(),
+                title: $('#id_title').val(),
+                text: $('#id_text').val(),
+                date: $('#id_date').val(),
+                category: $('#id_category').val(),
+                favorite: $('#id_favorite').val(),
                 csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
             },
             dataType: "html",
@@ -159,7 +141,7 @@ $(document).ready(function () {
     });
 
 
-    $(document).on("change","#filter",function (e) {
+    $(document).on("change", "#filter", function (e) {
         e.preventDefault();
 
         $.ajax({
@@ -187,5 +169,6 @@ $(document).ready(function () {
     function filterSuccess(data) {
         $('.table').html(data)
     }
+
 });
 

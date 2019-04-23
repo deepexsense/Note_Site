@@ -1,23 +1,24 @@
 <div class="card" id="note_detail">
     <div class="card-body">
         <ul>
-        <tr>
-            <td><h2 class="card-title">{{ note.title }}</h2></td>
-            <td><p class="card-text">{% autoescape on %}{{ note.text|safe }}{% endautoescape %}</p></td>
-            <td><p class="card-text">{{ note.category }}</p></td>
-            <td><p class="card-text">{{ note.date }}</p></td>
-            {% if note.favorite == True %}
-                <td><p>Избранный</p></td>
-            {% endif %}
-            <td><p>Пользователь: {{ note.user }}</p></td>
-        </tr>
-    </ul>
+            <tr>
+                <td><h2 class="card-title">{{ note.title }}</h2></td>
+                <td><p class="card-text">{% autoescape on %}{{ note.text|safe }}{% endautoescape %}</p></td>
+                <td><p class="card-text">{{ note.category }}</p></td>
+                <td><p class="card-text">{{ note.date }}</p></td>
+                {% if note.favorite == True %}
+                    <td><p>Избранный</p></td>
+                {% endif %}
+                <td><p>Пользователь: {{ note.user }}</p></td>
+            </tr>
+        </ul>
     </div>
     {% if user.is_authenticated %}
         <div class="buttons">
-        <a href="{% url 'note_edit' id=note.id %}" class="btn btn-outline-info">Edit</a>
-        <a href="{% url 'note_delete' id=note.id%}" class="btn btn-outline-danger">Delete</a>
-        <button id="id_filter" class="btn btn-outline-primary">All notes</button>
+            <a href="{% url 'note_edit' id=note.id %}" class="btn btn-outline-info">Edit</a>
+            <a href="{% url 'note_delete' id=note.id %}" class="btn btn-outline-danger">Delete</a>
+            <a href="{{ note.get_absolute_url }}" class="btn btn-outline-info" id="id_public_link">Public Link</a>
+            <button id="id_filter" class="btn btn-outline-primary">All notes</button>
         </div>
     {% endif %}
 </div>

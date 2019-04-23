@@ -1,63 +1,65 @@
 {% load staticfiles %}
 {% if filter %}
     <div id="filter">
-        <form method="get" autocomplete="off">
-            <ul id="navbar">
-                <li><h4 class="card-title" id="id_filter_title">Filter</h4></li>
-                <li>Title: {{ filter.form.title }}</li>
-                <li>Date: {{ filter.form.date }}</li>
-                <li>Category: {{ filter.form.category }}</li>
-                <li>Favorite: {{ filter.form.favorite }}</li>
-                <li><h4 class="card-title" id="id_filter_title">Sorter</h4></li>
-                <li>Field:</li>
-                <li><select id="id_order_by">
-                    <option>title</option>
-                    <option>date</option>
-                    <option>category</option>
-                    <option>favorite</option>
-                </select></li>
-                <li>Direction:</li>
-                <li><select id="id_direction">
-                    <option>ascending</option>
-                    <option>descending</option>
-              </select></li>
-              <li><p></p></li>
-              <li><button id="id_new_note" class="btn btn-outline-success">New note</button></li>
-            </ul>
-        </form>
-        <link rel="stylesheet" type="text/css" href="{% static "datetimepicker/jquery.datetimepicker.css" %}"/>
-        <script src="{% static "datetimepicker/jquery.js"%}"></script>
-        <script src="{% static "datetimepicker/build/jquery.datetimepicker.full.min.js"%}"></script>
-        <script>
+    <form method="get" autocomplete="off">
+        <ul id="navbar">
+            <li><h4 class="card-title" id="id_filter_title">Filter</h4></li>
+            <li>Title: {{ filter.form.title }}</li>
+            <li>Date: {{ filter.form.date }}</li>
+            <li>Category: {{ filter.form.category }}</li>
+            <li>Favorite: {{ filter.form.favorite }}</li>
+            <li><h4 class="card-title" id="id_filter_title">Sorter</h4></li>
+            <li>Field:</li>
+            <li><select id="id_order_by">
+                <option>title</option>
+                <option>date</option>
+                <option>category</option>
+                <option>favorite</option>
+            </select></li>
+            <li>Direction:</li>
+            <li><select id="id_direction">
+                <option>ascending</option>
+                <option>descending</option>
+            </select></li>
+            <li><p></p></li>
+            <li>
+                <button id="id_new_note" class="btn btn-outline-success">New note</button>
+            </li>
+        </ul>
+    </form>
+    <link rel="stylesheet" type="text/css" href="{% static "datetimepicker/jquery.datetimepicker.css" %}"/>
+    <script src="{% static "datetimepicker/jquery.js" %}"></script>
+    <script src="{% static "datetimepicker/build/jquery.datetimepicker.full.min.js" %}"></script>
+    <script>
         $(function () {
-                $("#id_date").datetimepicker({
-                    format:"Y-m-d H:i",
-                });
+            $("#id_date").datetimepicker({
+                format: "Y-m-d H:i",
             });
-        </script>
-        <table class="table">
-        {% for note in filter.qs %}
-            {% cycle 'row' '' as row silent%}
-            {% if row %}<tr class="trt">{% endif %}
-            <td>
-            <div class="card">
-                <div class="card-body">
-                    <div class="favor">
-                        <h4 class="card-title">{{ note.title }}</h4>
-                        {% if note.favorite == True %}
-                            <i class="fas fa-heart"></i>
-                        {% endif %}
+        });
+    </script>
+            <table class="table">
+            {% for note in filter.qs %}
+                {% cycle 'row' '' as row silent%}
+                {% if row %}<tr class="trt">{% endif %}
+                <td>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="favor">
+                            <h4 class="card-title">{{ note.title }}</h4>
+                            {% if note.favorite == True %}
+                                <i class="fas fa-heart"></i>
+                            {% endif %}
+                        </div>
+                        <button id="id_details" value="{{ note.id }}" class="btn btn-outline-primary">Details &rarr;</button>
                     </div>
-                    <button id="id_details" value="{{ note.id }}" class="btn btn-outline-primary">Details &rarr;</button>
                 </div>
-            </div>
-            </td>
-        {% if not row %}</tr>{% endif %}
-        {% endfor %}
-        </table>
-        {% else %}
-            <h2 class="alert-danger">No notes available</h2>
-            <h2 class="alert-info">If you want to create new note click button below</h2>
-            <a href="{% url 'note_new' %}" class="btn btn-outline-success">New note</a>
-        {% endif %}
-    </div>
+                </td>
+            {% if not row %}</tr>{% endif %}
+            {% endfor %}
+            </table>
+{% else %}
+    <h2 class="alert-danger">No notes available</h2>
+    <h2 class="alert-info">If you want to create new note click button below</h2>
+    <a href="{% url 'note_new' %}" class="btn btn-outline-success">New note</a>
+{% endif %}
+</div>

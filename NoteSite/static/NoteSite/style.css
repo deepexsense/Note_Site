@@ -1,112 +1,299 @@
-body {
-  width: 100%;
-  height: 100%;
+@media screen {
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        background-image: url(img/background.png);
+        background-size: 100%;
+    }
+
+    .sidebar_nav {
+        background: rgba(127, 199, 255, 0.5);;
+        margin-bottom: 25px;
+        padding-left: 10px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .alert-danger {
+        width: max-content;
+    }
+
+    .alert-info {
+        margin-top: 10px;
+        width: max-content;
+    }
+
+    #navbar {
+        margin: 10px;
+        padding: 0;
+        list-style-type: none;
+        width: 100px;
+    }
+
+    #submit {
+        margin-top: 10px;
+    }
+
+    #slides {
+        margin-left: 10px;
+    }
+
+    #filter {
+        display: flex;
+    }
+
+    .table td, .table th {
+        border-top: none;
+    }
+
+    .card-columns {
+        margin-left: 100px;
+        display:block ;
+
+    }
+
+    .card-body {
+        width: 300px;
+    }
+
+    .card {
+        width: 300px;
+    }
+
+    .card#note_detail {
+        margin-left: 40px;
+        width: 500px;
+        margin-bottom: 50px;
+    }
+
+    .card#id_sign_up_card {
+        width: 800px;
+        margin-left: 300px;
+    }
+
+    .card-body#id_sign_up_card-body {
+        width: 800px;
+    }
+
+    .card#id_login {
+        width: 300px;
+        height: 300px;
+        margin-left: 500px;
+    }
+
+    .card-body#id_login_card-body {
+        width: 300px;
+        height: 300px;
+    }
+
+    #id_login-input {
+        margin-left: 75px;
+    }
+
+    .card#new_note {
+        margin-left: 40px;
+        width: 500px;
+        margin-bottom: 50px;
+    }
+
+    .card#edit_note {
+        margin-left: 40px;
+        width: 500px;
+        margin-bottom: 50px;
+    }
+
+    .fa-heart {
+        color: red;
+    }
+
+    .favor {
+        display: flex;
+    }
+
+    .table {
+        margin-left: 100px;
+        width: 100%;
+    }
+
+    #all_notes {
+        margin-left: 100px;
+    }
+
+    .buttons {
+        margin: 40px;
+    }
+
+    #option1 {
+        display: none;
+    }
+
+    #option2 {
+        display: none;
+    }
+
+    #option3 {
+        display: none;
+    }
+
+    #id_filter_title {
+        margin-bottom: -5px;
+        margin-top: 5px;
+    }
+
 }
 
-body {
-  background-image: url(img/background.png);
-  background-size: 100%;
-}
+@media only screen
+and (device-width: 375px)
+and (device-height: 667px)
+and (-webkit-device-pixel-ratio: 2) {
+    body {
+        width: 100%;
+        height: 100%;
+    }
 
-.sidebar_nav {
-  background: rgba(127, 199, 255, 0.5);;
-  margin-bottom: 25px;
-  padding-left: 10px;
-}
-a {
-  text-decoration: none;
-}
-.alert-danger{
-  width: max-content;
-}
-.alert-info{
-  margin-top: 10px;
-  width: max-content;
-}
-#navbar{
-  margin: 10px;
-  padding: 0;
-  list-style-type: none;
-  width: 100px;
-}
-#submit{
-  margin-top: 10px;
-}
-#slides{
-    margin-left: 10px;
-}
-#filter {
-    display: flex;
-}
-.table td, .table th {
-    border-top: none;
-}
-.card-body{
-    width: 300px;
-}
-.card{
-    width: 300px;
-}
-.card#note_detail{
-    margin-left: 40px;
-    width: 500px;
-    margin-bottom: 50px;
-}
-.card#id_sign_up_card{
-    width: 800px;
-    margin-left: 300px;
-}
-.card-body#id_sign_up_card-body{
-    width: 800px;
-}
-.card#id_login{
-    width: 300px;
-    height: 300px;
-    margin-left: 500px;
-}
-.card-body#id_login_card-body{
-    width: 300px;
-    height: 300px;
-}
-#id_login-input{
-    margin-left: 75px;
-}
-.card#new_note{
-    margin-left: 40px;
-    width: 500px;
-    margin-bottom: 50px;
-}
-.card#edit_note{
-    margin-left: 40px;
-    width: 500px;
-    margin-bottom: 50px;
-}
-.fa-heart{
-    color: red;
-}
-.favor{
-    display: flex;
-}
-.table{
-    margin-left: 100px;
-    width: 100%;
-}
-#all_notes{
-    margin-left: 100px;
-}
-.buttons{
-    margin: 40px;
-}
-#option1{
-    display: none;
-}
-#option2{
-    display: none;
-}
-#option3{
-    display: none;
-}
-#id_filter_title{
-    margin-bottom: -5px;
-    margin-top: 5px;
+    body {
+        background-image: url(img/background.png);
+        background-size: 100%;
+    }
+
+    .sidebar_nav {
+        background: rgba(127, 199, 255, 0.5);;
+        margin-bottom: 25px;
+        padding-left: 10px;
+        width: auto;
+        height: 300px;
+    }
+
+    #id_home {
+
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .alert-danger {
+        width: max-content;
+    }
+
+    .alert-info {
+        margin-top: 10px;
+        width: max-content;
+    }
+
+    #navbar {
+        margin: 10px;
+        padding: 0;
+        list-style-type: none;
+        width: 100px;
+    }
+
+    #submit {
+        margin-top: 10px;
+    }
+
+    #slides {
+        margin-left: 10px;
+    }
+
+    #filter {
+        display: flex;
+    }
+
+    .table td, .table th {
+        border-top: none;
+    }
+
+    .card-body {
+        width: 300px;
+    }
+
+    .card {
+        width: 300px;
+    }
+
+    .card#note_detail {
+        margin-left: 40px;
+        width: 500px;
+        margin-bottom: 50px;
+    }
+
+    .card#id_sign_up_card {
+        width: 800px;
+        margin-left: 300px;
+    }
+
+    .card-body#id_sign_up_card-body {
+        width: 800px;
+    }
+
+    .card#id_login {
+        width: 300px;
+        height: 300px;
+        margin-left: 500px;
+    }
+
+    .card-body#id_login_card-body {
+        width: 300px;
+        height: 300px;
+    }
+
+    #id_login-input {
+        margin-left: 75px;
+    }
+
+    .card#new_note {
+        margin-left: 40px;
+        width: 500px;
+        margin-bottom: 50px;
+    }
+
+    .card#edit_note {
+        margin-left: 40px;
+        width: 500px;
+        margin-bottom: 50px;
+    }
+
+    .fa-heart {
+        color: red;
+    }
+
+    .favor {
+        display: flex;
+    }
+
+    .table {
+        margin-left: 100px;
+        width: 100%;
+    }
+
+    #all_notes {
+        margin-left: 100px;
+    }
+
+    .buttons {
+        margin: 40px;
+    }
+
+    #option1 {
+        display: none;
+    }
+
+    #option2 {
+        display: none;
+    }
+
+    #option3 {
+        display: none;
+    }
+
+    #id_filter_title {
+        margin-bottom: -5px;
+        margin-top: 5px;
+    }
 }

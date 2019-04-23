@@ -1,8 +1,6 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
-from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, FormView, DetailView, UpdateView, DeleteView
 from django.views.generic.base import View
@@ -16,6 +14,14 @@ class NoteDetailView(DetailView):
 
     def get_object(self, queryset=None):
         note = Note.objects.get(id=self.kwargs['id'])
+        return note
+
+
+class NotePublicView(DetailView):
+    template_name = 'public.html'
+
+    def get_object(self, queryset=None):
+        note = Note.objects.get(note_id=self.kwargs['note_id'])
         return note
 
 
