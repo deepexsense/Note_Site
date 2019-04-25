@@ -81,18 +81,18 @@
     }
 
     .card#id_login {
-        width: 300px;
-        height: 300px;
+        width: 250px;
+        height: 280px;
         margin-left: 500px;
     }
 
     .card-body#id_login_card-body {
-        width: 300px;
-        height: 300px;
+        width: 200px;
+        height: 200px;
     }
 
     #id_login-input {
-        margin-left: 75px;
+        margin-left: 50px;
     }
 
     .card#new_note {

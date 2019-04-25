@@ -1,6 +1,8 @@
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, FormView, DetailView, UpdateView, DeleteView
 from django.views.generic.base import View
@@ -56,7 +58,6 @@ class AjaxableNotesView(LoginRequiredMixin, ListView):
 class RegisterFormView(FormView):
     form_class = UserCreationForm
     success_url = '/registration_success/'
-
     template_name = 'registration/register.html'
 
     def form_valid(self, form):
@@ -68,16 +69,17 @@ class RegistrationSuccessView(TemplateView):
     template_name = 'registration/registration_success.html'
 
 
-class LoginFormView(FormView):
+class SignInFormView(FormView):
     form_class = AuthenticationForm
     success_url = '/'
 
     template_name = 'registration/login.html'
 
     def form_valid(self, form):
-        self.user = form.get_user()
-        login(self.request, self.user)
-        return super(LoginFormView, self).form_valid(form)
+        user = authenticate(**form.cleaned_data)
+        if user:
+            login(self.request, user)
+        return super(SignInFormView, self).form_valid(form)
 
 
 class LogoutView(View):
@@ -118,3 +120,4 @@ class NoteDeletingView(LoginRequiredMixin, DeleteView):
     def get_object(self, queryset=None):
         note = Note.objects.get(id=self.kwargs["id"])
         return note
+

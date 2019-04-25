@@ -1,22 +1,25 @@
 $(document).ready(function () {
-    $(document).on("submit", "#id_register_form", function (e) {
-        e.preventDefault();
-
-        $.ajax({
-            type: "POST",
-            url: "/register/",
-            data: {
-                username: $('#id_username').val(),
-                password1: $('#id_password1').val(),
-                password2: $('#id_password2').val(),
-                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-            },
-            dataType: "html",
-            success: function () {
-                alert("Created new account! Now you can sign in!")
-            },
-        });
-    });
+    // $(document).on("submit", "#id_register_form", function (e) {
+    //     e.preventDefault();
+    //
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/register/",
+    //         data: {
+    //             username: $('#id_username').val(),
+    //             password1: $('#id_password1').val(),
+    //             password2: $('#id_password2').val(),
+    //             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+    //         },
+    //         dataType: "html",
+    //         success: function () {
+    //             alert("Created new account! Now you can sign in!")
+    //         },
+    //         error: function () {
+    //             alert("Please input correct username and password!")
+    //         }
+    //     });
+    // });
 
     $(document).on("click", "#id_sign_up", function (e) {
         e.preventDefault();
@@ -43,7 +46,6 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#id_home", function (e) {
-        console.log("A");
         e.preventDefault();
 
         $.ajax({

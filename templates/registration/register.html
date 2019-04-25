@@ -1,9 +1,9 @@
 <div class="card" id="id_sign_up_card">
     <div class="card-body" id="id_sign_up_card-body">
-        <form id="id_register_form" action="" method="POST">
+        <form id="register_form" action="{% url 'register' %}" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="btn btn-outline-success">Register</button>
+            <button type="submit" id="id_register_form" class="btn btn-outline-success">Register</button>
         </form>
     </div>
 </div>

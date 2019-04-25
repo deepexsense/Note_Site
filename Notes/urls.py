@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^my_notes/$', views.NotesView.as_view(), name='my_notes'),
     url(r'^register/$', views.RegisterFormView.as_view(), name='register'),
     url(r'^registration_success/$', views.RegistrationSuccessView.as_view(), name='registration_success'),
-    url(r'^login/$', views.LoginFormView.as_view(), name='login'),
+    url(r'^login/$', views.SignInFormView.as_view(), name='login'),
     url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
     url(r'^note/(?P<id>[0-9]+)/$', views.NoteDetailView.as_view(), name='detail'),
     url(r'^note/(?P<note_id>[0-9a-f-]+)/$', views.NotePublicView.as_view(), name='note_uuid_url'),
@@ -16,5 +16,7 @@ urlpatterns = [
     url(r'^my_notes/edit/(?P<id>[0-9]+)/$', views.NoteEditingView.as_view(), name='note_edit'),
     url(r'^my_notes/delete/(?P<id>[0-9a-f-]+)/$', views.NoteDeletingView.as_view(), name='note_delete'),
     url(r'^my_notes/ajax/$', views.AjaxableNotesView.as_view(), name='ajax_notes_filter'),
+    # url(r'^login_error/$', views.TemplateView.as_view(template_name='registration/login_error.html'), name='login_error'),
+    # url(r'^my_notes/ajax/validate_username/$', views.validate_username, name='validate_username'),
 ]
 
