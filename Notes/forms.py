@@ -11,7 +11,7 @@ class NoteForm(forms.ModelForm):
         fields = ('title', 'text', 'date', 'category', 'favorite',)
 
 
-# class UserRegistrationForm(forms.ModelForm):
+    # class UserRegistrationForm(forms.ModelForm):
 #     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
 #     password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
 #

@@ -108,7 +108,7 @@ $(document).ready(function () {
         console.log(id);
         $.ajax({
             type: "GET",
-            url: "/note/"+id,
+            url: "/note/" + id,
             data: {
                 title: $('#id_title').val(),
                 text: $('#id_text').val(),
@@ -163,6 +163,19 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on("change", "#customToggle1", function (e) {
+        e.preventDefault();
+        const id = $('#note_id_el').val();
+        console.log("value of ot", id);
+        $.ajax({
+            type: 'POST',
+            url: '/my_notes/ajax/' + id + '/link/',
+            dataType: 'html',
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            success: changer,
+        });
+    });
+
 
     function clickSuccess(data) {
         $('#ajax').html(data)
@@ -172,5 +185,9 @@ $(document).ready(function () {
         $('.table').html(data)
     }
 
+    function changer(data) {
+        const f =  $('#customToggle1').prop('checked');
+        $('#customToggle1').prop('checked', f);
+    }
 });
 

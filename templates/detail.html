@@ -17,8 +17,18 @@
         <div class="buttons">
             <a href="{% url 'note_edit' id=note.id %}" class="btn btn-outline-info">Edit</a>
             <a href="{% url 'note_delete' id=note.id %}" class="btn btn-outline-danger">Delete</a>
-            <a href="{{ note.get_absolute_url }}" class="btn btn-outline-info" id="id_public_link">Public Link</a>
             <button id="id_filter" class="btn btn-outline-primary">All notes</button>
+            <a href="{{ note.get_absolute_url }}" class="btn btn-outline-info" id="id_public_link">Public Link</a>
+            <div class="custom-control custom-toggle my-2">
+                <input type="checkbox" id="customToggle1" name="customToggle1" class="custom-control-input"
+                        {% if not note.is_locked %}
+                       checked
+                        {% else %}
+                        {% endif %}
+                >
+                <label class="custom-control-label" for="customToggle1">Public Link</label>
+            </div>
         </div>
     {% endif %}
+    <input hidden="true" id="note_id_el" value="{{ note.id }}"/>
 </div>

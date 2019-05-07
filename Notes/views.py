@@ -1,9 +1,10 @@
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import render
+from django.http import HttpResponse, Http404
+from django.shortcuts import render, get_object_or_404
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, FormView, DetailView, UpdateView, DeleteView
 from django.views.generic.base import View
 from Notes.filters import NoteFilter
@@ -23,7 +24,9 @@ class NotePublicView(DetailView):
     template_name = 'public.html'
 
     def get_object(self, queryset=None):
-        note = Note.objects.get(note_id=self.kwargs['note_id'])
+        note = get_object_or_404(Note, note_id=self.kwargs['note_id'])
+        if note.is_locked:
+            raise Http404("You have no permissions for this note")
         return note
 
 
@@ -43,7 +46,7 @@ class AjaxableNotesView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(AjaxableNotesView, self).get_context_data(**kwargs)
-        order_by = self.request.GET.get('order_by', default='title_lower')
+        order_by = self.request.GET.get('order_by')
         direction = self.request.GET.get('direction')
         context['order_by'] = order_by
         context['direction'] = direction
@@ -121,3 +124,12 @@ class NoteDeletingView(LoginRequiredMixin, DeleteView):
         note = Note.objects.get(id=self.kwargs["id"])
         return note
 
+
+@method_decorator(csrf_exempt, 'dispatch')
+class NoteLockedView(View):
+
+    def post(self, request, id):
+        note = Note.objects.get(id=self.kwargs["id"])
+        note.is_locked = not note.is_locked
+        note.save()
+        return HttpResponse()

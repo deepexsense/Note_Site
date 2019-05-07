@@ -1,6 +1,6 @@
 {% load staticfiles %}
 {% if filter %}
-    <div id="filter">
+<div id="filter">
     <form method="get" autocomplete="off">
         <ul id="navbar">
             <li><h4 class="card-title" id="id_filter_title">Filter</h4></li>
@@ -23,7 +23,7 @@
             </select></li>
             <li><p></p></li>
             <li>
-                <button id="id_new_note" class="btn btn-outline-success">New note</button>
+                <div id="id_new_note" class="btn btn-outline-success">New note</div>
             </li>
         </ul>
     </form>
@@ -37,26 +37,28 @@
             });
         });
     </script>
-            <table class="table">
-            {% for note in filter.qs %}
-                {% cycle 'row' '' as row silent%}
-                {% if row %}<tr class="trt">{% endif %}
-                <td>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="favor">
-                            <h4 class="card-title">{{ note.title }}</h4>
-                            {% if note.favorite == True %}
-                                <i class="fas fa-heart"></i>
-                            {% endif %}
-                        </div>
-                        <button id="id_details" value="{{ note.id }}" class="btn btn-outline-primary">Details &rarr;</button>
+    <table class="table">
+        {% for note in filter.qs %}
+            {% cycle 'row' '' as row silent %}
+            {% if row %}
+                <tr class="trt">{% endif %}
+        <td>
+            <div class="card">
+                <div class="card-body">
+                    <div class="favor">
+                        <h4 class="card-title">{{ note.title }}</h4>
+                        {% if note.favorite == True %}
+                            <i class="fas fa-heart"></i>
+                        {% endif %}
                     </div>
+                    <button id="id_details" value="{{ note.id }}" class="btn btn-outline-primary">Details &rarr;
+                    </button>
                 </div>
-                </td>
-            {% if not row %}</tr>{% endif %}
-            {% endfor %}
-            </table>
+            </div>
+        </td>
+        {% if not row %}</tr>{% endif %}
+        {% endfor %}
+    </table>
 {% else %}
     <h2 class="alert-danger">No notes available</h2>
     <h2 class="alert-info">If you want to create new note click button below</h2>

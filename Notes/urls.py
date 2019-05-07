@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^my_notes/edit/(?P<id>[0-9]+)/$', views.NoteEditingView.as_view(), name='note_edit'),
     url(r'^my_notes/delete/(?P<id>[0-9a-f-]+)/$', views.NoteDeletingView.as_view(), name='note_delete'),
     url(r'^my_notes/ajax/$', views.AjaxableNotesView.as_view(), name='ajax_notes_filter'),
+    url(r'^my_notes/ajax/(?P<id>[0-9]+)/link/$', views.NoteLockedView.as_view(), name='locked_note'),
     # url(r'^login_error/$', views.TemplateView.as_view(template_name='registration/login_error.html'), name='login_error'),
     # url(r'^my_notes/ajax/validate_username/$', views.validate_username, name='validate_username'),
 ]

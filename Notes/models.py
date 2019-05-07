@@ -21,9 +21,14 @@ class Note(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     favorite = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_locked = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['date']
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('note_uuid_url', args=[str(self.note_id)])
+         return reverse('note_uuid_url', args=[str(self.note_id)])
+
